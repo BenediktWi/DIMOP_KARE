@@ -1,0 +1,9 @@
+bom_id,result_id,parent_id,mat_id,mat_desc,mat_id_int,mat_desc_int,cad_id,mara_plast_id,mat_rw,height,width,depth,unit,weight,weight_unit,volume,volume_unit,is_atomic,orga_id,cons_id,21,22,23,24,level,plast_desc,plast_fam
+,1,,77,Zahnbürste,,,,None,0.0,,,,mm,90.0,g,,mm^3,0,1,2,0,0.0,0.0,0.0,1,,
+67.0,2,1.0,2,Buerstenkopf,,,,None,0.0,70.0,12.0,12.0,mm,40.0,g,10080.0,mm^3,0,1,1,0,0.0,0.0,0.0,2,,
+11.0,3,2.0,12,Borstenhalterung,,,,6104.0,0.0,12.0,7.0,5.0,mm,30.0,g,420.0,mm^3,1,1,1,0,0.0,0.0,0.0,3,SINKRAL® L 322,ABS
+12.0,4,2.0,13,Borsten,,,,4310.0,0.0,6.0,0.2,0.2,mm,10.0,g,0.24,mm^3,1,1,1,0,0.0,0.0,0.0,3,LNP™ THERMOCOMP™ TF002,PUR
+68.0,5,1.0,78,Griff Neu,,,,None,0.0,,,,mm,50.0,g,,mm^3,0,1,2,0,0.0,0.0,0.0,2,,
+69.0,6,5.0,79,Griffschale A,,,,376.0,0.0,,,,mm,20.0,g,,mm^3,1,1,2,0,0.0,0.0,0.0,3,ALCOM PC 740/4.12 UV GY1161-11LD,PC
+70.0,7,5.0,80,Griffschale B,,,,110.0,0.0,,,,mm,25.0,g,,mm^3,1,1,2,0,0.0,0.0,0.0,3,Akulon® PA66-HC12 UD,PA66
+72.0,8,5.0,75,Kappe B1,,,,5634.0,0.0,,,,mm,3.0,g,,mm^3,1,1,1,0,0.0,0.0,0.0,3,RIBLENE® MM 20 R,PE-LD
