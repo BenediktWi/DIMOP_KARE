@@ -35,10 +35,28 @@ class Import(Resource):
         print(list(rel.columns))
         print(required_columns_rel)
 
-        # Check if required columns are there
-        if((all(item in list(bom.columns) for item in required_columns_bom) == False) |
-           (all(item in list(rel.columns) for item in required_columns_rel) == False)):
-            return 1
+    
+        # # Deprated: Check if required columns are there
+        # if((all(item in list(bom.columns) for item in required_columns_bom) == False) |
+        #    (all(item in list(rel.columns) for item in required_columns_rel) == False)):
+        #     return 1
+
+        # Updated Error Handling #BW 
+        errors = []
+        # Check BOM columns
+        missing_bom_columns = [col for col in required_columns_bom if col not in bom.columns]
+        if missing_bom_columns:
+            errors.append(f"Missing BOM columns: {', '.join(missing_bom_columns)}")
+
+        # Check Relations columns
+        missing_rel_columns = [col for col in required_columns_rel if col not in rel.columns]
+        if missing_rel_columns:
+            errors.append(f"Missing Relation columns: {', '.join(missing_rel_columns)}")
+
+        # Wenn Fehler vorhanden
+        if errors:
+            return {"status": "error", "errors": errors}, 400  # HTTP 400 = Bad Request
+
 
         else:
             db = connect_db()
