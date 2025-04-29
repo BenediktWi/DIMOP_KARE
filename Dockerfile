@@ -8,8 +8,11 @@ RUN DEBIAN_FRONTEND="noninteractive" apt install git nodejs npm python3 python3-
 # Pipenv installieren
 RUN pip3 install pipenv
 
-# Dein neues Repository klonen
-RUN git clone https://github.com/BenediktWi/DIMOP_KARE.git
+## Dein neues Repository klonen
+# RUN git clone https://github.com/BenediktWi/DIMOP_KARE.git
+
+# Lokalen Projektcode ins Image kopieren
+COPY . /app
 
 # Ins Frontend-Verzeichnis wechseln
 WORKDIR /DIMOP_KARE/backend/frontend
