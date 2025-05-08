@@ -1,35 +1,32 @@
 FROM ubuntu:20.04
 
-# System aktualisieren und benötigte Pakete installieren
-RUN apt update
-RUN apt upgrade -y
-RUN DEBIAN_FRONTEND="noninteractive" apt install git nodejs npm python3 python3-pip -y
+# System aktualisieren
+RUN apt update && apt upgrade -y
+
+# Tools installieren
+RUN DEBIAN_FRONTEND="noninteractive" apt install -y curl git python3 python3-pip
+
+# Node.js 14 (kompatibel mit react-scripts 3.4.1)
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
+    apt install -y nodejs && \
+    node -v && npm -v
 
 # Pipenv installieren
 RUN pip3 install pipenv
 
-## Dein neues Repository klonen
-# RUN git clone https://github.com/BenediktWi/DIMOP_KARE.git
-
-# Lokalen Projektcode ins Image kopieren
+# Projektdateien kopieren
 COPY . /app
 
-# Ins Frontend-Verzeichnis wechseln
-WORKDIR /DIMOP_KARE/backend/frontend
+# Frontend installieren & bauen
+WORKDIR /app/backend/frontend
+RUN rm -rf node_modules package-lock.json || true && \
+    npm install && \
+    npm run build
 
-# Node-Module neu installieren
-RUN rm -r node_modules
-RUN npm install
-RUN npm run build
-
-# Wechsel ins Backend-Verzeichnis
-WORKDIR /DIMOP_KARE/backend
-
-# Python-Abhängigkeiten installieren
+# Backend installieren
+WORKDIR /app/backend
 RUN pipenv install
 
-# Port freigeben
+# Port und Start
 EXPOSE 5000
-
-# Startkommando
 CMD ["pipenv", "run", "python", "main.py"]
