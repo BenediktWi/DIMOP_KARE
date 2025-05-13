@@ -1,32 +1,23 @@
 FROM ubuntu:20.04
 
-# System aktualisieren
+# System aktualisieren und benötigte Pakete installieren
 RUN apt update && apt upgrade -y
-
-# Tools installieren
-RUN DEBIAN_FRONTEND="noninteractive" apt install -y curl git python3 python3-pip
-
-# Node.js 14 (kompatibel mit react-scripts 3.4.1)
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
-    apt install -y nodejs && \
-    node -v && npm -v
+RUN DEBIAN_FRONTEND="noninteractive" apt install git python3 python3-pip -y
 
 # Pipenv installieren
 RUN pip3 install pipenv
 
-# Projektdateien kopieren
+# Lokalen Projektcode ins Image kopieren
 COPY . /app
 
-# Frontend installieren & bauen
-WORKDIR /app/backend/frontend
-RUN rm -rf node_modules package-lock.json || true && \
-    npm install && \
-    npm run build
-
-# Backend installieren
+# Wechsel ins Backend-Verzeichnis
 WORKDIR /app/backend
+
+# Python-Abhängigkeiten installieren
 RUN pipenv install
 
-# Port und Start
+# Port freigeben
 EXPOSE 5000
+
+# Startkommando
 CMD ["pipenv", "run", "python", "main.py"]
