@@ -8,7 +8,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt install -y git nodejs npm python3 pytho
 RUN pip3 install pipenv
 
 # Frontend-Abhängigkeiten installieren und builden
-WORKDIR /backend/frontend
+WORKDIR DiMOP/backend/frontend
 RUN rm -rf node_modules
 RUN npm install
 RUN npm run build
