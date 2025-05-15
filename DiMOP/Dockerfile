@@ -13,13 +13,13 @@ WORKDIR /DIMOP_KARE
 RUN git checkout Development_V2
 
 # Frontend-Abhängigkeiten installieren und builden
-WORKDIR /DIMOP_KARE/backend/frontend
+WORKDIR /DIMOP_KARE/DiMOP/backend/frontend
 RUN rm -rf node_modules
 RUN npm install
 RUN npm run build
 
 # Backend-Abhängigkeiten installieren
-WORKDIR /DIMOP_KARE/backend
+WORKDIR /DIMOP_KARE/DiMOP/backend
 RUN pipenv install
 
 # Container-Startbefehl
