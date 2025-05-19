@@ -1,0 +1,8 @@
+# Alles weglassen …
+**
+
+# … bis auf die Dockerfiles, die CI-Konfigurationen und diese Erklärung
+!DiMOP/Dockerfile
+!.dockerignore
+!.gitignore
+!.github/
