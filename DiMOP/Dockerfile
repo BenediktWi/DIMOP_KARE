@@ -15,7 +15,7 @@ RUN git clone --depth=1 --branch ${DIMOP_BRANCH} ${DIMOP_REPO_URL} /app
 # ---------- Frontend bauen ----------
 WORKDIR /app/DiMOP/backend/frontend
 RUN rm -rf node_modules \
- && npm ci \
+ && npm install --no-audit --no-fund \
  && npm run build
 
 # ---------- Backend-Abhängigkeiten ----------
